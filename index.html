@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เครื่องคำนวณราคาล้างแอร์ | Sakchai Air</title>
+  <meta name="description" content="เครื่องคำนวณราคาล้างแอร์เบื้องต้นสำหรับบ้านและสำนักงาน พร้อมข้อมูลการดูแลเครื่องปรับอากาศจาก Sakchai Air">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://YOUR-GITHUB-USERNAME.github.io/sakchaiair-air-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="เครื่องคำนวณราคาล้างแอร์ | Sakchai Air">
+  <meta property="og:description" content="คำนวณค่าล้างแอร์เบื้องต้นได้ง่าย ๆ พร้อมอ่านข้อมูลเกี่ยวกับการดูแลแอร์">
+  <meta property="og:url" content="https://YOUR-GITHUB-USERNAME.github.io/sakchaiair-air-calculator/">
+
+  <style>
+    :root {
+      --primary: #0b63ce;
+      --primary-dark: #084b9c;
+      --bg: #f5f8fc;
+      --text: #1f2937;
+      --muted: #64748b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans Thai", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: min(960px, calc(100% - 32px));
+      margin: auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b63ce, #084b9c);
+      color: #fff;
+      padding: 56px 0 48px;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.2;
+    }
+
+    header p {
+      margin: 0;
+      opacity: .92;
+      max-width: 720px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      margin: 28px 0;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 16px;
+      background: #fff;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 22px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover { background: var(--primary-dark); }
+
+    .result {
+      margin-top: 22px;
+      padding: 20px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+
+    .price {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .links a {
+      display: inline-block;
+      margin: 5px 8px 5px 0;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 35px 0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "เครื่องคำนวณราคาล้างแอร์ Sakchai Air",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web",
+    "description": "เครื่องมือคำนวณราคาล้างแอร์เบื้องต้น",
+    "url": "https://YOUR-GITHUB-USERNAME.github.io/sakchaiair-air-calculator/"
+  }
+  </script>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <h1>เครื่องคำนวณราคาล้างแอร์</h1>
+    <p>คำนวณค่าใช้จ่ายเบื้องต้นตามจำนวนเครื่องและประเภทแอร์ได้ง่าย ๆ ฟรี</p>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h2>คำนวณค่าล้างแอร์</h2>
+
+    <div class="grid">
+      <div>
+        <label for="airType">ประเภทแอร์</label>
+        <select id="airType">
+          <option value="500">แอร์ติดผนังทั่วไป — 500 บาท/เครื่อง</option>
+          <option value="700">แอร์ขนาดใหญ่ — 700 บาท/เครื่อง</option>
+          <option value="1000">แอร์ฝังฝ้า/4 ทิศทาง — 1,000 บาท/เครื่อง</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="quantity">จำนวนเครื่อง</label>
+        <input id="quantity" type="number" min="1" value="1">
+      </div>
+    </div>
+
+    <button type="button" onclick="calculatePrice()">คำนวณราคา</button>
+
+    <div class="result" id="result" aria-live="polite">
+      ราคาประมาณ <div class="price">500 บาท</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>ทำไมควรล้างแอร์?</h2>
+    <p>
+      การล้างแอร์ช่วยกำจัดฝุ่น สิ่งสกปรก และคราบสะสมภายในเครื่อง
+      ช่วยให้เครื่องปรับอากาศทำงานได้อย่างมีประสิทธิภาพมากขึ้น
+      และช่วยให้บรรยากาศภายในห้องสะอาดขึ้น
+    </p>
+    <p>
+      ราคาจริงอาจแตกต่างกันตามชนิดของเครื่อง สถานที่ติดตั้ง
+      จำนวนเครื่อง และสภาพของแอร์ ควรสอบถามผู้ให้บริการก่อนเข้ารับบริการ
+    </p>
+  </section>
+
+  <section class="card links">
+    <h2>อ่านข้อมูลเพิ่มเติม</h2>
+    <p>ดูบทความเกี่ยวกับการล้างแอร์และการดูแลเครื่องปรับอากาศ:</p>
+
+    <a href="https://sakchaiair.com/blog/" rel="noopener">
+      Sakchai Air Blog
+    </a>
+
+    <p>
+      เครื่องมือนี้เป็นโปรเจกต์ตัวอย่างแบบ Open Source
+      สามารถดูและศึกษา Source Code ได้จาก GitHub Repository
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © Sakchai Air — Air Cleaning Calculator
+  </div>
+</footer>
+
+<script>
+function calculatePrice() {
+  const price = Number(document.getElementById("airType").value);
+  const quantity = Math.max(1, Number(document.getElementById("quantity").value) || 1);
+  const total = price * quantity;
+
+  document.getElementById("result").innerHTML =
+    'ราคาประมาณ <div class="price">' +
+    total.toLocaleString("th-TH") +
+    ' บาท</div>' +
+    '<small>' + quantity + ' เครื่อง × ' +
+    price.toLocaleString("th-TH") + ' บาท</small>';
+}
+</script>
+</body>
+</html>
